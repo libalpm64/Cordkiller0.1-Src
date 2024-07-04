@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="includes/js/obfuscated/main.js"></script>
+
+    <title>CK | Admin Dashboard</title>
+    <style>
+        input {
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="flex items-center justify-between py-4 px-6 text-lg font-bold fixed top-0 left-0 w-full bg-gray-800 border-b border-gray-700">
+        <div>
+            <h1 class="text-white">CK</h1>
+            <p class="text-sm text-gray-400">Admin Dashboard</p>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-12 px-6 md:pt-28">
+        <div class="flex justify-center">
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-white w-full max-w-screen-lg">
+
+                <div class="text-center my-4">
+                    <h3 class="text-lg font-semibold text-white">Total Searches: <%= totalSearches %></h3>
+                </div>
+
+                <div class="text-center mt-6">
+                    <h3 class="text-lg font-semibold">Total API Searches: <%= apiSearchCount %></h3>
+                  </div>
+
+
+
+                <h2 class="text-xl font-semibold text-white mb-4">User List</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-white uppercase">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Username</th>
+                                <th scope="col" class="px-6 py-3">Expiration Date</th>
+                                <th scope="col" class="px-6 py-3">Account Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(function(user) { %>
+                                <tr class="bg-gray-800 border-b border-gray-700 text-white">
+                                    <td class="px-6 py-4"><%= user.username %></td>
+                                    <td class="px-6 py-4">                <% 
+                                        var date = new Date(user.expiration_date);
+                                        var formattedDate = (date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                                                            date.getDate().toString().padStart(2, '0') + '/' + 
+                                                            date.getFullYear();
+                                        %>
+                                        <%= formattedDate %>
+                                    </td>
+                                    <td class="px-6 py-4"><%= user.account_status %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+
+                <div class="mt-4 flex justify-center">
+                    <% if (totalPages > 1) { %>
+                        <ul class="inline-flex items-center">
+                            <% if (currentPage > 1) { %>
+                                <li><a href="/adminpooop?page=<%= currentPage - 1 %>" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md mx-1">Previous</a></li>
+                            <% } %>
+
+                            <% for(let i = Math.max(1, currentPage - 2); i <= Math.min(currentPage + 2, totalPages); i++) { %>
+                                <li>
+                                    <a href="/adminpooop?page=<%= i %>" class="<%= i === currentPage ? 'bg-gray-700' : 'bg-gray-600 hover:bg-gray-700' %> text-white font-semibold py-2 px-4 rounded-md mx-1">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                            <% } %>
+
+                            <% if (currentPage < totalPages) { %>
+                                <li><a href="/adminpooop?page=<%= currentPage + 1 %>" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md mx-1">Next</a></li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="py-4 px-6 bg-gray-800 text-gray-400 border-t border-gray-700 fixed bottom-0 left-0 w-full text-center">
+        <div class="flex justify-between items-center">
+            <p>&copy; Copyright 2023 CK</p>
+            <div>
+                <a href="https://discord.gg/BXPGx2XPar" target="_blank" class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://t.me/cordkill" target="_blank" class="telegram-icon ml-2">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

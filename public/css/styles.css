@@ -1,0 +1,64 @@
+body {
+    font-family: 'Consolas', monospace;
+}
+.lkp-ctn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+#ip-num {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+    flex: 1;
+    border: 2px solid #4a5568 !important;
+    outline: none;
+}
+#lkp-btn {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    background-color: #4a5568;
+    border: 2px solid #4a5568;
+}
+#lkp-icn {
+    fill: #4a5568;
+}
+#otpt-bx {
+    overflow: hidden;
+    background-color: #4a5568;
+    margin-top: 20px;
+}
+#otpt-cnt {
+padding: 1rem;
+background-color: rgba(17, 24, 39, 0.9);
+border-radius: 0.5rem;
+overflow: hidden;
+}
+
+#discord-id {
+display: inline-block; 
+padding: 0.2rem 0.5rem; 
+background-color: #2d3748; 
+border-radius: 0.25rem; 
+}
+#send-attack {
+    background-color: #e53e3e;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#send-attack:hover {
+    background-color: #c53030;
+}
+.mn-ctn {
+    width: 400px;
+    max-width: 100%;
+}
+.otpt-cnt {
+    max-height: 400px; 
+    overflow: auto; 
+}
